@@ -190,3 +190,6 @@ Pertanyaan di atas dapat dijawab dengan kueri filter sebagai berikut **"ip.src =
 ![image](https://github.com/dimss113/PBKK-Tugas-Formulir/assets/89715780/f7a8cea7-8eb7-4ec6-9bdd-eabc85aedb8e)
 
 Maka didapatkan password dan username dhafin:kesayangannyak0k0
+
+## Kendala :
+- kurang paham dengan soal nomor 6 sehingga tidak accepted
