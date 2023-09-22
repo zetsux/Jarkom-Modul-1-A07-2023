@@ -48,6 +48,16 @@ Untuk menjawab kedua pertanyaan di atas, kita hanya perlu mencari kedua nilai te
 ![1FLAG](https://cdn.discordapp.com/attachments/995337235211763722/1154633036751716422/image.png)
 
 ### Soal 2
+> Sebutkan web server yang digunakan pada portal praktikum Jaringan Komputer!
+
+- untuk menjawab persoalan tersebut, kita dapat gunakan filter dengan query `tcp cotains "jaringan"`
+- kemudian kita bisa follow, kemudian tcp stream dan gunakan filter search dan ketikkan "server" sehingga akan didapatkan server yang digunakan pada portal praktikum Jaringan komputer yaitu "gunicorn"
+
+![image](https://github.com/dimss113/PBKK-Tugas-Formulir/assets/89715780/22b62c3f-d71d-498b-8016-8e0c10e081ee)
+
+![image](https://github.com/dimss113/PBKK-Tugas-Formulir/assets/89715780/4733d96d-fdb7-4d58-8cbe-09c14bb4fb70)
+
+![image](https://github.com/dimss113/PBKK-Tugas-Formulir/assets/89715780/dd2b857c-d84b-4353-8cca-b582c4ab7a6e)
 
 
 ### Soal 3
@@ -68,8 +78,53 @@ Untuk menjawab pertanyaan di atas hanya tinggal melihat protocol yang digunakan,
 
 
 ### Soal 4
+> Berapa nilai checksum yang didapat dari header pada paket nomor 130?
+
+Untuk melihat nilai checksum dari paket nomor 130 maka kita perlu scroll seluruh paket hingga sampai ke paket dengan urutan no. 130. Kemudian untuk mengetahui nilai dari checksum kita bisa temukan pada bagian "packet details" pada "User Datagram Protocol".
+
+![image](https://github.com/dimss113/PBKK-Tugas-Formulir/assets/89715780/9da4fa10-6322-4e2f-b08d-72e838721df5)
 
 ### Soal 5
+> Elshe menemukan suatu file packet capture yang menarik. Bantulah Elshe untuk menganalisis file packet capture tersebut.
+
+ - Berapa banyak packet yang berhasil di capture dari file pcap tersebut?
+ - Port berapakah pada server yang digunakan untuk service SMTP?
+ - Dari semua alamat IP yang tercapture, IP berapakah yang merupakan public IP?
+
+pertama-tama kita harus tahu password dari file yang akan dibuka yang mana nantinya di dalam file tersebut terdapat kode netcat untuk submit 3 jawaban dari 3 soal diatas.
+untuk mengetahui password nya dapat kita cari pada packet dengan memfilter menggunakan `tcp contains "pass"`
+
+![image](https://github.com/dimss113/PBKK-Tugas-Formulir/assets/89715780/dec31b74-ca7e-487c-8312-fc68dd7c82cb)
+
+kemudian kita buka follow, tcp streams untuk membuka isi paketnya. kemudian kita dapat filter menggunakan kata "word" dan akan akan menemukan passwordnya yaitu sebagai berikut: 
+
+![image](https://github.com/dimss113/PBKK-Tugas-Formulir/assets/89715780/7a4db6cd-e7b2-4f33-bb5c-2f0d8ca2b995)
+
+password `NWltcGxlUGFzNXdvcmQ=` dienkripsi dengan base64 sehingga kita perlu melakukan decode terlebih dahulu sehingga didaptkan password nya adalah ``
+
+![image](https://github.com/dimss113/PBKK-Tugas-Formulir/assets/89715780/5dc203b1-499e-4625-99b0-b855eb3e057b)
+
+
+selanjutnya ktia masukkan password pada file connect.txt:
+
+![image](https://github.com/dimss113/PBKK-Tugas-Formulir/assets/89715780/fabd75d6-0f71-43b1-b8e0-14d901de6d56)
+
+kemudian lakukan netcat pada terminal dan jawab 3 pertanyaan tersebut:
+- pertanyaan 1:
+kita dapat mengetahui dengan melihat pada bagian 'packet bytes' dibawah yaitu terdapat 60 paket
+![image](https://github.com/dimss113/PBKK-Tugas-Formulir/assets/89715780/64c09e85-156a-4945-828b-11c79fb8f191)
+
+- pertanyaan 2:
+untuk mengetahui port smtp kita lakukan filter "smtp" kemudian pada header no 6 kita klik dan lihat pada bagian "packet details" kita dapatkan portnya adalah 25:
+
+![image](https://github.com/dimss113/PBKK-Tugas-Formulir/assets/89715780/3861fa06-6504-43aa-957f-ba71bd34bfc3)
+
+- pertanyaan 3:
+pertama kita dapatkan semua ip yang tercapture terlebih dahulu:
+
+![image](https://github.com/dimss113/PBKK-Tugas-Formulir/assets/89715780/a179c8b6-f1cb-483c-8c15-91acec4e51d4)
+
+Ip yang public adalah `74.53.140.153` karena ip range 10.0.0 hingga 10.255.255 merupakan private ip dan 192.168 juga merupakan private ip.
 
 
 ### Soal 6
@@ -106,6 +161,13 @@ Pertanyaan di atas dapat dijawab dengan menjalankan query filter yakni “ip.dst
 
 
 ### Soal 8
+> Berikan kueri filter sehingga wireshark hanya mengambil semua protokol paket yang menuju port 80! (Jika terdapat lebih dari 1 port, maka urutkan sesuai dengan abjad)
+
+Query filternya adalah sebagai berikut:
+`tcp.dstport == 80 || udp.dstport == 80`
+
+![image](https://github.com/dimss113/PBKK-Tugas-Formulir/assets/89715780/9848155b-978f-402c-8012-b750bc5f89a3)
+
 
 ### Soal 9
 > Berikan kueri filter sehingga wireshark hanya mengambil paket yang berasal dari alamat 10.51.40.1 tetapi tidak menuju ke alamat 10.39.55.34!
@@ -117,3 +179,14 @@ Pertanyaan di atas dapat dijawab dengan kueri filter sebagai berikut **"ip.src =
 ![9FLAG](https://cdn.discordapp.com/attachments/997158382429548574/1154645628132003850/image.png) 
 
 ### Soal 10
+
+> Sebutkan kredensial yang benar ketika user mencoba login menggunakan Telnet
+- Filter dengan query telnet
+
+![image](https://github.com/dimss113/PBKK-Tugas-Formulir/assets/89715780/06b9e033-d644-46ca-8a50-551ad53a9c77)
+
+- Kemudian cari header 236 dan follow tcp streams
+
+![image](https://github.com/dimss113/PBKK-Tugas-Formulir/assets/89715780/f7a8cea7-8eb7-4ec6-9bdd-eabc85aedb8e)
+
+Maka didapatkan password dan username dhafin:kesayangannyak0k0
